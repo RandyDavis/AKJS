@@ -38,7 +38,39 @@
     var p2Attack = player2.getDamage(player2.strength);
     player1.hitpoints -= p2Attack;  // Subtract the attack damage from hitpoints
     document.write(player2.pname +" just dealt " + p2Attack + " damage to " +player1.pname + "<br />");
-    document.write(player1.pname + " has " + player1.hitpoints + "hit points left");
+    document.write(player1.pname + " has " + player1.hitpoints + "hit points left<br /><br />");
+
+
+
+    // USING object OBJECTS WITHOUT A CUSTOM CONSTRUCTOR
+    // An empty object and how to view its data type and constructor function
+    var obj = new Object();
+    document.write(obj); // [object Object]
+    document.write("<br />");
+    document.write(obj.constructor); // function Object() { [native code] }
+    document.write("<br /><br />");
+
+    // An object being given a string data type
+    var objGeorge = new Object("George");
+    document.write(objGeorge + "<br />"); // George
+    document.write(objGeorge.length); // 6
+    document.write("<br /><br />");
+
+    // An object given an Array data type 
+    var objArr = new Object(["Paul", "Joe", "Bob"]);
+    document.write(objArr + "<br />"); // Paul, Joe, Bob
+    document.write(objArr.reverse() + "<br /><br />");  // Bob, Joe, Paul
+
+    // MANAGING YOUR OBJECT PROPERTIES
+    // An example of giving your new object Object its properties and values on the fly without using a constructor(changing the value of properties later in script uses the same syntax).
+    var Stacy = new Object("Stacy");
+    Stacy.gender = "female";
+    Stacy.issexy = true;
+    if (Stacy.issexy) {
+      document.write(Stacy + " is a sexy babe!");
+    } else {
+      document.write(Stacy + " is a dog... run!");
+    }
   </script>
 </body>
 </html>
