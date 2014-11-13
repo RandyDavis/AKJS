@@ -11,6 +11,128 @@
   
 
   <script>
+    // Setup Environment variables
+    var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, numCorrect = 0;
+    // Create quiz questions 
+    var questions = [
+      [ "I am the leader of the Autobots:",
+        "Star Scream",
+        "Optimus Prime",
+        "Megatron",
+        "Ratchet",
+        "Optimus Prime"
+      ],
+      [ "I am the director responsible for making the recent Transformers movies the success they are by making sure to include lots of  blowing sh*t up:",
+        "Steven Speilberg",
+        "James Cameron",
+        "Chris Nolan",
+        "Michael Bay",
+        "Michael Bay"
+      ],
+      [ "I was ripped in half and destroyed by the leader of the Decepticons:",
+        "Jazz",
+        "Cliff Jumper",
+        "Iron Hide",
+        "Bumble Bee",
+        "Jazz"
+      ],
+      [ "I am a general bad a$$ and audience favorite despite not being able to talk:",
+        "Bumble Bee",
+        "Ratchet",
+        "Astro Train",
+        "Hot Rod",
+        "Bumble Bee"
+      ],
+      [ "I was a nobody at the start of the first Transformers movie, but have had nothing but hot girlfriends ever since:",
+        "Mark Wahlberg",
+        "Shia LeBouf",
+        "Robert Downey Jr.",
+        "Daniel Radcliffe",
+        "Shia LeBouf"
+      ],
+      [ "I am the leader of the Decepticons:",
+        "Lockdown",
+        "Optimus Prime",
+        "Megatron",
+        "Star Scream",
+        "Megatron"
+      ],
+      [ "I am an intergalactic hunter:",
+        "Ultra Magnus",
+        "Lockdown",
+        "Galvatron",
+        "Hound",
+        "Lockdown"
+      ],
+      [ "My girlfriend dumped me after the second movie. Who was the philly that broke my heart?",
+        "Megan Fox",
+        "Rosie Huntington",
+        "Beyonce",
+        "Rachel McAdams",
+        "Megan Fox"
+      ],
+      [ "What was the profession of the dad who was the lead role in Transformers 4?",
+        "Police Officer",
+        "Auto Mechanic",
+        "Inventor",
+        "Gif Creator",
+        "Inventor"
+      ],
+      [ "Who was the legendary warrior that was freed and joined the battle in Transformers 4?",
+        "Grimlock",
+        "Unicron",
+        "Ratchet",
+        "Megatron",
+        "Grimlock"
+      ],
+    ];
+
+    // Create function to target div to display quiz
+    function _(x) {
+      return document.getElementById(x);
+    }
+
+    // Render questions dynamically
+    function renderQuestion() {
+      test = _("test");  // retrieve div that will show the question
+      _("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
+      question = questions[pos][0];
+      chA = questions[pos][1];
+      chB = questions[pos][2];
+      chC = questions[pos][3];
+      chD = questions[pos][4];
+      test.innerHTML = "<h3>" + question + "</h3>";
+      test.innerHTML += "<input type='radio' name='choices' value='A'> " + chA + "<br>";
+      test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
+      test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br>";
+      test.innerHTML += "<input type='radio' name='choices' value='D'> " + chD + "<br>";
+      test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+    }
+
+    // Create loop to check which answer the user has selected
+    function checkAnswer() {
+      choices = document.getElementsByName("choices");
+      for (var i = 0; i < choices.length; i++) {
+        if (choices[i].checked) {
+          choice = choices[i].value;
+        }
+      }
+      if (choice == questions[pos][5]) {
+        numCorrect++;
+      }
+      pos++;
+      renderQuestion();
+    }
+
+    window.addEventListener("load", renderQuestion, false);
+
+
+
+
+
+
+
+
 
   </script>
   <!-- Live Reload Script -->

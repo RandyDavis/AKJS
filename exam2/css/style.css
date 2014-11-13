@@ -1,0 +1,22 @@
+body{
+  background-color: #B0BAB9;
+}
+div#test {
+  border: 2px solid blue;
+  padding: 10px 40px 40px 40px;
+}
+
+  #test h3 {
+    font-family: Helvetica;
+    color: black;
+  }
+
+  #test button {
+    margin-top: 8px;
+    font-family: Helvetica;
+    color: red;
+    font-weight: bold;
+    height: 30px;
+    border: 1px solid red;
+    background-color: rgba(255, 255, 255, 0);
+  }
