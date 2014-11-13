@@ -27,6 +27,13 @@
     // Render questions dynamically
     function renderQuestion() {
       test = _("test");   // retrieve div that will show the question
+      if (pos >= questions.length) {
+        test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct.</h2>";
+        _("test_status").innerHTML = "Test Completed";
+        pos = 0;
+        correct = 0;
+        return false;
+      }
       _("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
       question = questions[pos][0];
       chA = questions[pos][1];
@@ -39,8 +46,19 @@
       test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
     }
 
+    // Create loop to check which answer the user has selected
     function checkAnswer() {
-      alert("Ok we will");
+      choices = document.getElementsByName("choices");
+      for (var i =0; i < choices.length; i++) {
+        if (choices[i].checked) {
+          choice = choices[i].value;
+        }
+      }
+      if (choice == questions[pos][4]) {
+        correct++;
+      }
+      pos++;
+      renderQuestion();
     }
 
     window.addEventListener("load", renderQuestion, false);
