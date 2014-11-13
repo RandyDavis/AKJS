@@ -12,7 +12,7 @@
 
   <script>
     // Setup Environment variables
-    var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, numCorrect = 0;
+    var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
     // Create quiz questions 
     var questions = [
       [ "I am the leader of the Autobots:",
@@ -20,71 +20,71 @@
         "Optimus Prime",
         "Megatron",
         "Ratchet",
-        "Optimus Prime"
+        "B"
       ],
       [ "I am the director responsible for making the recent Transformers movies the success they are by making sure to include lots of  blowing sh*t up:",
         "Steven Speilberg",
         "James Cameron",
         "Chris Nolan",
         "Michael Bay",
-        "Michael Bay"
+        "D"
       ],
       [ "I was ripped in half and destroyed by the leader of the Decepticons:",
         "Jazz",
         "Cliff Jumper",
         "Iron Hide",
         "Bumble Bee",
-        "Jazz"
+        "A"
       ],
       [ "I am a general bad a$$ and audience favorite despite not being able to talk:",
         "Bumble Bee",
         "Ratchet",
         "Astro Train",
         "Hot Rod",
-        "Bumble Bee"
+        "A"
       ],
       [ "I was a nobody at the start of the first Transformers movie, but have had nothing but hot girlfriends ever since:",
         "Mark Wahlberg",
         "Shia LeBouf",
         "Robert Downey Jr.",
         "Daniel Radcliffe",
-        "Shia LeBouf"
+        "B"
       ],
       [ "I am the leader of the Decepticons:",
         "Lockdown",
         "Optimus Prime",
         "Megatron",
         "Star Scream",
-        "Megatron"
+        "C"
       ],
       [ "I am an intergalactic hunter:",
         "Ultra Magnus",
         "Lockdown",
         "Galvatron",
         "Hound",
-        "Lockdown"
+        "B"
       ],
       [ "My girlfriend dumped me after the second movie. Who was the philly that broke my heart?",
         "Megan Fox",
         "Rosie Huntington",
         "Beyonce",
         "Rachel McAdams",
-        "Megan Fox"
+        "A"
       ],
       [ "What was the profession of the dad who was the lead role in Transformers 4?",
         "Police Officer",
         "Auto Mechanic",
         "Inventor",
         "Gif Creator",
-        "Inventor"
+        "C"
       ],
       [ "Who was the legendary warrior that was freed and joined the battle in Transformers 4?",
         "Grimlock",
         "Unicron",
         "Ratchet",
         "Megatron",
-        "Grimlock"
-      ],
+        "A"
+      ]
     ];
 
     // Create function to target div to display quiz
@@ -95,6 +95,13 @@
     // Render questions dynamically
     function renderQuestion() {
       test = _("test");  // retrieve div that will show the question
+      if (pos >= questions.length) {
+        test.innerHTML = "<h2>You got " + correct + " out of " + questions.length + " questions correct.";
+        _("test_status").innerHTML = "Test Completed";
+        pos = 0;
+        correct = 0;
+        return false; 
+      }
       _("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
       question = questions[pos][0];
       chA = questions[pos][1];
@@ -118,7 +125,8 @@
         }
       }
       if (choice == questions[pos][5]) {
-        numCorrect++;
+        correct++;
+        console.log(questions[pos][5]);
       }
       pos++;
       renderQuestion();
@@ -127,14 +135,8 @@
     window.addEventListener("load", renderQuestion, false);
 
 
-
-
-
-
-
-
-
   </script>
+
   <!-- Live Reload Script -->
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
